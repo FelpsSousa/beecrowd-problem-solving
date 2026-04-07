@@ -1,6 +1,6 @@
 # Milestones
 
-- [ ] repository bootstrap completed
+- [x] repository bootstrap completed
 - [ ] first 3 problems added
 - [ ] first L3 deep dive published
 - [ ] first multi-language problem added
