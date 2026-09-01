@@ -37,9 +37,9 @@ Explain why this change improves the repository.
 - [ ] File structure follows repository conventions
 - [ ] Public-facing content is written in English
 - [ ] Naming follows the established conventions
-- [ ] Documentation is aligned with the correct level (L1, L2, ou L3)
+- [ ] Documentation is aligned with the correct level (L1, L2, or L3)
 - [ ] Links and paths were checked
-- [ ] Trackers/indexes were updated whe necessary
+- [ ] Trackers/indexes were updated when necessary
 
 ## Notes
 
