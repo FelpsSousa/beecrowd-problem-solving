@@ -6,7 +6,7 @@ This file defines the operational maintenance rules for this repository.
 
 The goal is to keep the repository consistent, readable, scalable, and professionally maintainable over time.
 
-This repository is not a raw archive of accepted submissions. It is a structures public knowledge base for problem solving, code quality, and technical growth.
+This repository is not a raw archive of accepted submissions. It is a structured public knowledge base for problem solving, code quality, and technical growth.
 
 ## Main Branch Strategy
 
@@ -49,7 +49,7 @@ Examples:
 
 Open a pull request when the change is coherent and reviewable.
 
-Examples of changes the should usually go through a PR:
+Examples of changes that should usually go through a PR:
 
 - repository structure updates
 - documentation blocks
@@ -74,7 +74,7 @@ This keeps `main` clean and turn each pull request into one clear historical uni
 
 ## Language Standard 
 
-All public-facing repository contend be in English, including:
+All public-facing repository content must be in English, including:
 
 - documentation
 - templates
