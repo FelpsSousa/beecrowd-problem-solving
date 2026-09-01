@@ -79,5 +79,5 @@ Given that `N < 250`, this is more than enough.
 
 ## Status
 
-- [] Solved
-- [] Revisit later
+- [ ] Solved
+- [ ] Revisit later
