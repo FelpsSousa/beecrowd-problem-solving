@@ -35,6 +35,7 @@ This file is the single prioritized TODO for the repository. Sections are ordere
 - [ ] use `scripts/new_problem.py` (once built) to scaffold each migrated problem consistently
 - [ ] batch migrations under `migration/<batch-name>` branches, one PR per coherent batch (not one PR per problem, not one giant PR)
 - [ ] prioritize breadth first: cover most Beecrowd categories at least once before grinding depth in a single category — better signal for a portfolio than volume in one topic
+- [ ] follow `trackers/learning-path.md` as the concrete driver for problem selection order (category × difficulty tier spiral)
 
 ## 5. AppSec / robotics specialization alignment
 
