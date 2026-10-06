@@ -70,6 +70,17 @@ def _exe(workdir: Path) -> Path:
     return workdir / ("main.exe" if os.name == "nt" else "main")
 
 
+def _missing_sanitizer_runtime(stderr: str) -> bool:
+    """True when the linker failed only because libasan/libubsan are not installed.
+
+    Some MinGW-w64 builds on Windows ship the compiler flags but not the
+    sanitizer runtime libraries. That is an environment gap, not a defect in
+    the program being compiled, so it should be a skip, like a missing
+    compiler, rather than a build failure.
+    """
+    return "cannot find -lasan" in stderr or "cannot find -lubsan" in stderr
+
+
 def _compile(command: list[str], exe: Path) -> Prepared:
     try:
         done = subprocess.run(command, capture_output=True, text=True, timeout=COMPILE_TIMEOUT_SECONDS)
@@ -96,7 +107,10 @@ def prepare(folder: str, source: Path, workdir: Path, options: Options) -> Prepa
             flags += SANITIZE_FLAGS
         if options.werror:
             flags.append("-Werror")
-        return _compile([compiler, *flags, str(source), "-o", str(exe)], exe)
+        result = _compile([compiler, *flags, str(source), "-o", str(exe)], exe)
+        if options.sanitize and result.error and _missing_sanitizer_runtime(result.error):
+            return Prepared(skip_reason="ASan/UBSan runtime not installed for this compiler", missing_tool=True)
+        return result
 
     if folder == "rust":
         if shutil.which("rustc") is None:

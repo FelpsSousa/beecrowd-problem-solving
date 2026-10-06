@@ -105,6 +105,8 @@ class RunTestsTest(unittest.TestCase):
         source = "#include <iostream>\n#include <vector>\nint main() { std::vector<int> v(3); std::cout << v[std::cin.get() == 'x' ? 3 : 10] << '\\n'; }\n"
         problem = make_problem(self.root, folder="cpp", source=source, cases={"c": ("x", "0\n")})
         (result,) = self.run_problem(problem, sanitize=True)
+        if result.missing_tool:
+            self.skipTest("ASan/UBSan runtime not installed for this compiler")
         self.assertEqual(result.status, "FAIL")
 
     @unittest.skipUnless(have("gcc"), "gcc not installed")
