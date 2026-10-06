@@ -90,9 +90,14 @@ Each problem should follow the established repository conventions:
 
 - physical organization by ID range 
 - one main documentation file per problem 
-- multiple implementations under `solutions/`
+- one primary language per problem; extra implementations only with a stated reason
+- test cases under `tests/`, shared by all implementations
 - optional `notes.md`
 - optional `deep-dive.md`
+
+## Verification Before Any Git Update
+
+Run `python scripts/check_all.py` (see `docs/testing.md`). Enable the Git hooks once per clone with `git config core.hooksPath scripts/hooks`. CI repeats the full gate on every push and pull request.
 
 ## Index and Tracker Maintenance
 

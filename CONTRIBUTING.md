@@ -24,6 +24,8 @@ Please read:
 - `docs/repository-conventions.md`
 - `docs/git-workflow.md`
 - `docs/documentation-standard.md`
+- `docs/coding-standards.md`
+- `docs/testing.md`
 
 ## Main principle
 

@@ -11,7 +11,7 @@
 - Difficulty Level: {difficulty-level}
 - Topics: {topic-1}, {topic-2}
 - Primary Language: {primary-language}
-- Other Implementations: {other-implementations}
+- Other Implementations: None
 - Documentation Level: L2
 - Status: Solved
 - Review Priority: {low-medium-high}

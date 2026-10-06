@@ -38,6 +38,8 @@ Explain why this change improves the repository.
 - [ ] Public-facing content is written in English
 - [ ] Naming follows the established conventions
 - [ ] Documentation is aligned with the correct level (L1, L2, or L3)
+- [ ] `python scripts/check_all.py` passes (structure, lint, and test cases)
+- [ ] `Status: Solved` is used only for submissions accepted by the judge
 - [ ] Links and paths were checked
 - [ ] Trackers/indexes were updated when necessary
 
