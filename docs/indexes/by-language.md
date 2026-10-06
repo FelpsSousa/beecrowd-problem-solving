@@ -17,3 +17,11 @@ _No entries yet._
 ## C
 
 _No entries yet._
+
+## Rust
+
+_No entries yet._
+
+## SQL
+
+_No entries yet._

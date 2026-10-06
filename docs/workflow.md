@@ -8,7 +8,7 @@
 4. Think about the brute-force baseline
 5. Search for the cleanest acceptable approach
 6. Implement with clarity
-7. Test with small custom cases
+7. Test with the samples, edge cases, and a brute-force cross-check (see `testing.md`), then run `python scripts/check_all.py`
 8. Submit to the platform
 9. Document the solution at the correct level
 10. Register the problem in the trackers
@@ -37,7 +37,9 @@ After solving a problem, choose one documentation level:
 
 A problem should have one main documentation file.
 
-Multiple implementations may exist inside `solutions/`, but the conceptual explanation remains centralized.
+Each problem has one primary language, chosen for what it trains (see `language-policy.md`). Extra implementations exist only with a stated reason, and the conceptual explanation remains centralized.
+
+`Status: Solved` is used only after the judge accepts the submission.
 
 ## Review Rule
 
