@@ -11,9 +11,9 @@ https://judge.beecrowd.com/pt/problems/view/3484
 - Difficulty Level: 2
 - Topics: binary search tree, tree depth, simulation
 - Primary Language: C++
-- Other Implementations: Python
+- Other Implementations: None
 - Documentation Level: L2
-- Status: Solved
+- Status: In Progress
 - Review Priority: Medium
 
 ## Summary
@@ -75,7 +75,6 @@ Given that `N < 250`, this is more than enough.
 ## Implementations
 
 - C++: `solutions/cpp/main.cpp`
-- Python: `solutions/python/main.py`
 
 ## Status
 
