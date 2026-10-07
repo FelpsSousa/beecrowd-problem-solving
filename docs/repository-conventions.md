@@ -50,7 +50,24 @@ This keeps the filesystem stable and scalable.
 
 A problem has one main conceptual documentation file.
 
-Multiple implementations may exist inside `solutions/`, but the explanation should remain centralized.
+A problem has one primary language. Extra implementations may exist inside `solutions/` when there is a stated reason (see `language-policy.md`), but the explanation remains centralized.
+
+## Problem folder layout
+
+```text
+<problem-id>-<slug>/
+├── README.md              one explanation, with the metadata block
+├── notes.md               optional
+├── deep-dive.md           optional, for L3
+├── solutions/<language>/main.<ext>
+└── tests/<name>.in, <name>.out
+```
+
+Supported language folders: `cpp`, `c`, `python`, `javascript`, `rust`, `sql`. Test cases are shared by every implementation (see `testing.md`).
+
+## Code standards
+
+All code follows `coding-standards.md` and the style guide of its language. The rules are checked by `scripts/lint_solutions.py`.
 
 ## Statements
 

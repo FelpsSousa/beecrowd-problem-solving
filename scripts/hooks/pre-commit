@@ -1,0 +1,15 @@
+#!/bin/sh
+# Fast gate: validate, lint and test only the problems with staged changes.
+# Enable once per clone:  git config core.hooksPath scripts/hooks
+# Bypass in an emergency: git commit --no-verify  (CI will still run the full gate).
+
+cd "$(git rev-parse --show-toplevel)" || exit 1
+
+PY=$(command -v python3 || command -v python) || {
+    echo "pre-commit: Python 3 was not found on PATH" >&2
+    exit 1
+}
+
+# CHECK_ARGS lets you add flags for one commit, e.g. CHECK_ARGS=--strict git commit
+# shellcheck disable=SC2086
+exec "$PY" scripts/check_all.py --staged ${CHECK_ARGS:-}

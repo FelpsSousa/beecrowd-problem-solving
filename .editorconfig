@@ -11,5 +11,5 @@ indent_size = 2
 [*.md]
 trim_trailing_whitespace = false
 
-[*.{cpp,c,h,hpp,py,js}]
+[*.{cpp,c,h,hpp,py,js,rs}]
 indent_size = 4

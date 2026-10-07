@@ -18,6 +18,20 @@ This repository is influenced by principles commonly associated with the followi
 - The Algorithm Design Manual
 - Programming Pearls
 
+## Language and safe-coding references
+
+- Competitive Programmer's Handbook (Antti Laaksonen)
+- CP-Algorithms (online)
+- C++ Core Guidelines (Bjarne Stroustrup and Herb Sutter)
+- Effective Modern C++ (Scott Meyers)
+- SEI CERT C Coding Standard
+- Secure Coding in C and C++ (Robert C. Seacord)
+- The Rust Programming Language ("the book") and The Rustonomicon
+- PEP 8 and PEP 20 (Python)
+- MDN Web Docs (JavaScript)
+- SQL Antipatterns (Bill Karwin)
+- OWASP Cheat Sheet Series
+
 ## Practical interpretation for this repository
 
 These references inspire the following standards:

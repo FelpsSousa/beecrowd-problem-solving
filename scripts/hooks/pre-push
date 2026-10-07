@@ -1,0 +1,21 @@
+#!/bin/sh
+# Full gate before anything leaves your machine: everything that changed since
+# origin/main, built with sanitizers and warnings-as-errors.
+# Enable once per clone:  git config core.hooksPath scripts/hooks
+# Bypass in an emergency: git push --no-verify  (CI will still run the full gate).
+
+cd "$(git rev-parse --show-toplevel)" || exit 1
+
+PY=$(command -v python3 || command -v python) || {
+    echo "pre-push: Python 3 was not found on PATH" >&2
+    exit 1
+}
+
+if git rev-parse --verify --quiet origin/main >/dev/null; then
+    SCOPE="--since origin/main"
+else
+    SCOPE="--all"
+fi
+
+# shellcheck disable=SC2086
+exec "$PY" scripts/check_all.py $SCOPE --sanitize --werror ${CHECK_ARGS:-}
