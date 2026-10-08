@@ -1,4 +1,4 @@
-# {id} — {title}
+# {id}: {title}
 
 ## Link
 {problem-link}
