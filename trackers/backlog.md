@@ -13,7 +13,7 @@ This file is the single prioritized TODO for the repository. Sections are ordere
 
 ## 2. Automation scripts (empty stubs today, needed before scaling migration)
 
-- [ ] implement `scripts/new_problem.py`: scaffolds a problem folder (README from the right L1/L2/L3 template, `notes.md`, `solutions/<lang>/main.<ext>`) from the problem ID, title, and category
+- [x] implement `scripts/new_problem.py`: scaffolds a problem folder (README from the right L1/L2 template, L3 also gets `deep-dive.md`, `solutions/<lang>/main.<ext>` from the language skeleton) from the problem ID, title, and category
 - [x] implement `scripts/validate_structure.py`: fails if a `solutions/*/main.*` file is empty, a metadata field is missing, checkbox syntax is malformed, or a problem folder doesn't match `<id>-<slug>` naming
 - [ ] implement `scripts/sync_index.py`: regenerates `trackers/solved-problems.md` and `docs/indexes/*.md` from each problem's metadata block, so indexes can never drift from reality again
 - [ ] implement `scripts/generate_views.py`: optional dashboard/summary view (counts by language, category, difficulty)
@@ -40,7 +40,7 @@ This file is the single prioritized TODO for the repository. Sections are ordere
 
 - [ ] confirm rough volume and categories of already-solved problems to size the effort realistically
 - [ ] do not bulk-import: each migrated problem goes through the full review: style-guide pass, correct L1/L2/L3 documentation level, metadata filled, indexes updated (per `docs/repository-philosophy.md` migration principle and `CONTRIBUTING.md`)
-- [ ] use `scripts/new_problem.py` (once built) to scaffold each migrated problem consistently
+- [ ] use `scripts/new_problem.py` to scaffold each migrated problem consistently
 - [ ] batch migrations under `migration/<batch-name>` branches, one PR per coherent batch (not one PR per problem, not one giant PR)
 - [ ] prioritize breadth first: cover most Beecrowd categories at least once before grinding depth in a single category, since that's a better signal for a portfolio than volume in one topic
 - [ ] follow `trackers/learning-path.md` as the concrete driver for problem selection order (category × difficulty tier spiral)

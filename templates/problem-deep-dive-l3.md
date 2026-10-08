@@ -1,4 +1,4 @@
-# Deep Dive — {id} {title}
+# Deep Dive: {id} {title}
 
 ## Why this problem matters
 {why-it-is-interesting}
