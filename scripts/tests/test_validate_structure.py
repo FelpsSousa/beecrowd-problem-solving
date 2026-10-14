@@ -12,7 +12,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import validate_structure as vs  # noqa: E402
 from fixtures import quiet  # noqa: E402
 
-README = """# 1001 — Hello World
+README = """# 1001: Hello World
 
 ## Link
 https://example.invalid/1001
@@ -23,7 +23,7 @@ https://example.invalid/1001
 - Platform: Beecrowd
 - Category: Beginner
 - Difficulty Level: 1
-- Topics: output
+- Topics: Input / Output
 - Primary Language: C++
 - Other Implementations: None
 - Documentation Level: L1
@@ -147,6 +147,14 @@ class ValidateStructureTest(unittest.TestCase):
         (self.problem / "tests" / "orphan.out").write_text("1\n", encoding="utf-8")
         self.assert_error_contains("lonely.in has no matching lonely.out")
         self.assert_error_contains("orphan.out has no matching orphan.in")
+
+    def test_invalid_topic_rejected(self) -> None:
+        self.readme_replace("Topics: Input / Output", "Topics: Input / Output, tree depth")
+        self.assert_error_contains("Topics entry 'tree depth' must be one of")
+
+    def test_topic_matching_is_case_insensitive(self) -> None:
+        self.readme_replace("Topics: Input / Output", "Topics: input / output")
+        self.assertEqual(self.messages("error"), [])
 
     def test_strict_mode_fails_on_warnings(self) -> None:
         (self.problem / "solutions" / "python").mkdir()

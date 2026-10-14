@@ -14,6 +14,7 @@ from fixtures import make_problem, quiet  # noqa: E402
 
 import check_all  # noqa: E402
 import repo_lib  # noqa: E402
+import sync_index  # noqa: E402
 
 
 class ProblemDirsForTest(unittest.TestCase):
@@ -44,6 +45,7 @@ class ScopeTest(unittest.TestCase):
         self.git("config", "user.name", "Test")
         make_problem(self.root, problem_id=1001, slug="first")
         make_problem(self.root, problem_id=1002, slug="second")
+        quiet(lambda: sync_index.main(["--root", str(self.root)]))  # start with the indexes already in sync
         self.git("add", "-A")
         self.git("commit", "-q", "-m", "base")
 

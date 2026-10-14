@@ -41,6 +41,25 @@ CATEGORIES: tuple[str, ...] = (
 DOC_LEVELS: tuple[str, ...] = ("L1", "L2", "L3")
 PRIORITIES: tuple[str, ...] = ("Low", "Medium", "High")
 
+# Closed vocabulary for the "Topics" metadata field, same spirit as CATEGORIES:
+# a fixed, curated list so docs/indexes/by-topic.md never drifts into one
+# heading per slightly-different phrase. Add to this list deliberately.
+TOPICS: tuple[str, ...] = (
+    "Input / Output",
+    "Arrays",
+    "Strings",
+    "Simulation",
+    "Math",
+    "Sorting",
+    "Binary Search",
+    "Greedy",
+    "Recursion",
+    "Backtracking",
+    "Data Structures",
+    "Graphs",
+    "Dynamic Programming",
+)
+
 # "Solved" must only be used for code that was really accepted by the judge.
 STATUSES: tuple[str, ...] = ("Solved", "In Progress", "Improving", "To Review")
 
@@ -134,6 +153,20 @@ def parse_other_implementations(value: str) -> list[str]:
     if cleaned.lower() in ("", "none", "-", "n/a"):
         return []
     return [part.strip() for part in cleaned.split(",") if part.strip()]
+
+
+def find_topic(value: str) -> str | None:
+    """Map a Topics entry, case-insensitively, to its canonical spelling in TOPICS."""
+    wanted = value.strip().lower()
+    for topic in TOPICS:
+        if wanted == topic.lower():
+            return topic
+    return None
+
+
+def parse_topics(value: str) -> list[str]:
+    """`binary search, Math` -> ["binary search", "Math"], raw (not yet validated)."""
+    return [part.strip() for part in value.split(",") if part.strip()]
 
 
 def find_problem_dirs(root: Path) -> list[Path]:
