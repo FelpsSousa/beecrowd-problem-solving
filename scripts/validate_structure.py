@@ -29,13 +29,16 @@ from repo_lib import (
     REQUIRED_FIELDS,
     SLUG_RE,
     STATUSES,
+    TOPICS,
     Issue,
     count_issues,
     find_language,
     find_problem_dirs,
+    find_topic,
     parse_metadata,
     parse_other_implementations,
     parse_status_checkboxes,
+    parse_topics,
     print_issues,
 )
 
@@ -109,6 +112,10 @@ def check_metadata(problem_dir: Path, root: Path) -> tuple[list[Issue], dict[str
     level = meta.get("Difficulty Level", "")
     if level and not (level.isdigit() and 1 <= int(level) <= 10):
         issues.append(Issue("error", rel, f"Difficulty Level '{level}' must be an integer from 1 to 10"))
+
+    for topic in parse_topics(meta.get("Topics", "")):
+        if find_topic(topic) is None:
+            issues.append(Issue("error", rel, f"Topics entry '{topic}' must be one of: {', '.join(TOPICS)}"))
 
     first_line = text.splitlines()[0] if text.strip() else ""
     if name_match and not first_line.startswith(f"# {name_match.group(1)}"):

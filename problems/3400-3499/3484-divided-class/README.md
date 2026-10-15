@@ -1,4 +1,4 @@
-# 3484 — Divided Class
+# 3484: Divided Class
 
 ## Link
 https://judge.beecrowd.com/pt/problems/view/3484
@@ -9,7 +9,7 @@ https://judge.beecrowd.com/pt/problems/view/3484
 - Platform: Beecrowd
 - Category: Data Structures and Libraries
 - Difficulty Level: 2
-- Topics: binary search tree, tree depth, simulation
+- Topics: Data Structures, Simulation
 - Primary Language: C++
 - Other Implementations: None
 - Documentation Level: L2

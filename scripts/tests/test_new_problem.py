@@ -32,7 +32,7 @@ class NewProblemTest(unittest.TestCase):
             "3485", "Divided Class Two",
             "--category", "Data Structures and Libraries",
             "--difficulty", "3",
-            "--topics", "binary search tree,recursion",
+            "--topics", "Data Structures,Recursion",
             "--lang", "cpp",
         )
         self.assertEqual(code, 0)
@@ -45,7 +45,7 @@ class NewProblemTest(unittest.TestCase):
         self.assertIn("# 3485: Divided Class Two", readme)
         self.assertIn("- Category: Data Structures and Libraries", readme)
         self.assertIn("- Difficulty Level: 3", readme)
-        self.assertIn("- Topics: binary search tree, recursion", readme)
+        self.assertIn("- Topics: Data Structures, Recursion", readme)
         self.assertIn("- Primary Language: C++", readme)
         self.assertIn("- Status: In Progress", readme)
         self.assertIn("- [ ] Solved", readme)
@@ -55,14 +55,14 @@ class NewProblemTest(unittest.TestCase):
     def test_range_folder_computed_correctly(self) -> None:
         self.create(
             "1050", "Example", "--category", "Beginner", "--difficulty", "1",
-            "--topics", "io", "--lang", "python",
+            "--topics", "Input / Output", "--lang", "python",
         )
         self.assertTrue(self.problem_dir("1000-1099", "1050-example").is_dir())
 
     def test_refuses_to_overwrite_existing_folder(self) -> None:
         args = (
             "3485", "Divided Class Two", "--category", "Data Structures and Libraries",
-            "--difficulty", "3", "--topics", "trees", "--lang", "cpp",
+            "--difficulty", "3", "--topics", "Data Structures", "--lang", "cpp",
         )
         self.assertEqual(self.create(*args), 0)
         self.assertEqual(self.create(*args), 1)
@@ -70,44 +70,51 @@ class NewProblemTest(unittest.TestCase):
     def test_sql_requires_sql_category(self) -> None:
         code = self.create(
             "2700", "Some Query", "--category", "Beginner", "--difficulty", "2",
-            "--topics", "aggregation", "--lang", "sql",
+            "--topics", "Math", "--lang", "sql",
         )
         self.assertEqual(code, 1)
 
     def test_sql_category_requires_sql_language(self) -> None:
         code = self.create(
             "2700", "Some Query", "--category", "SQL", "--difficulty", "2",
-            "--topics", "aggregation", "--lang", "cpp",
+            "--topics", "Math", "--lang", "cpp",
         )
         self.assertEqual(code, 1)
 
     def test_sql_problem_created_correctly(self) -> None:
         code = self.create(
             "2700", "Some Query", "--category", "SQL", "--difficulty", "2",
-            "--topics", "aggregation", "--lang", "sql",
+            "--topics", "Math", "--lang", "sql",
         )
         self.assertEqual(code, 0)
         problem = self.problem_dir("2700-2799", "2700-some-query")
         self.assertTrue((problem / "solutions" / "sql" / "main.sql").is_file())
 
+    def test_unknown_topic_rejected(self) -> None:
+        code = self.create(
+            "3491", "Odd One", "--category", "Beginner", "--difficulty", "1",
+            "--topics", "tree depth", "--lang", "cpp",
+        )
+        self.assertEqual(code, 1)
+
     def test_unknown_language_rejected(self) -> None:
         code = self.create(
             "3486", "Another One", "--category", "Beginner", "--difficulty", "1",
-            "--topics", "io", "--lang", "cobol",
+            "--topics", "Input / Output", "--lang", "cobol",
         )
         self.assertEqual(code, 1)
 
     def test_non_ascii_title_requires_explicit_slug(self) -> None:
         code = self.create(
             "3487", "Divisão de Turma", "--category", "Beginner", "--difficulty", "1",
-            "--topics", "io", "--lang", "cpp",
+            "--topics", "Input / Output", "--lang", "cpp",
         )
         self.assertEqual(code, 1)
 
     def test_explicit_slug_overrides_derivation(self) -> None:
         code = self.create(
             "3487", "Divisão de Turma", "--category", "Beginner", "--difficulty", "1",
-            "--topics", "io", "--lang", "cpp", "--slug", "class-split",
+            "--topics", "Input / Output", "--lang", "cpp", "--slug", "class-split",
         )
         self.assertEqual(code, 0)
         self.assertTrue(self.problem_dir("3400-3499", "3487-class-split").is_dir())
@@ -115,7 +122,7 @@ class NewProblemTest(unittest.TestCase):
     def test_level_l3_also_creates_deep_dive(self) -> None:
         self.create(
             "3488", "Hard One", "--category", "Graphs", "--difficulty", "8",
-            "--topics", "flood fill", "--lang", "cpp", "--level", "L3",
+            "--topics", "Graphs", "--lang", "cpp", "--level", "L3",
         )
         problem = self.problem_dir("3400-3499", "3488-hard-one")
         self.assertIn("- Documentation Level: L3", (problem / "README.md").read_text(encoding="utf-8"))
@@ -126,14 +133,14 @@ class NewProblemTest(unittest.TestCase):
     def test_notes_flag_creates_notes_file(self) -> None:
         self.create(
             "3489", "Needs Notes", "--category", "Beginner", "--difficulty", "1",
-            "--topics", "io", "--lang", "cpp", "--notes",
+            "--topics", "Input / Output", "--lang", "cpp", "--notes",
         )
         self.assertTrue(self.problem_dir("3400-3499", "3489-needs-notes").joinpath("notes.md").is_file())
 
     def test_output_validates_with_only_a_warning(self) -> None:
         self.create(
             "3490", "Fresh Scaffold", "--category", "Beginner", "--difficulty", "1",
-            "--topics", "io", "--lang", "cpp",
+            "--topics", "Input / Output", "--lang", "cpp",
         )
         issues = vs.validate_repository(self.root)
         errors = [i for i in issues if i.level == "error"]

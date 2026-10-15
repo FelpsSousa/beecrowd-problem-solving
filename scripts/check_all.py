@@ -6,6 +6,7 @@ Steps, in order:
     2. structure and metadata validation   (validate_structure.py)
     3. style and safety lint               (lint_solutions.py)
     4. build and run all test cases        (run_tests.py)
+    5. tracker/index drift                 (sync_index.py --check)
 
 Scope:
     python scripts/check_all.py                      # whole repository
@@ -31,6 +32,7 @@ from pathlib import Path
 
 import lint_solutions
 import run_tests
+import sync_index
 import validate_structure
 from repo_lib import changed_files, find_problem_dirs, implementations, problem_dirs_for
 
@@ -97,12 +99,13 @@ def main(argv: list[str] | None = None) -> int:
     else:
         step("script unit tests", run_unit_tests)
 
+    common = ["--root", str(root)]
+    flags = (["--strict"] if args.strict else []) + (["--github"] if args.github else [])
+
     if nothing_to_check:
         print("\nNo problem folders changed: structure, lint and tests skipped.")
         steps += [("structure validation", None), ("lint", None), ("solution tests", None)]
     else:
-        common = ["--root", str(root)]
-        flags = (["--strict"] if args.strict else []) + (["--github"] if args.github else [])
         step("structure validation", lambda: validate_structure.main([*common, *flags, *path_args]))
 
         files = [str(f) for d in (dirs if dirs is not None else find_problem_dirs(root)) for f in implementations(d).values()]
@@ -114,6 +117,10 @@ def main(argv: list[str] | None = None) -> int:
             ("--require-toolchains", args.require_toolchains),
         ) if on]
         step("solution tests", lambda: run_tests.main([*common, *test_flags, *path_args]))
+
+    # Index drift is a whole-repository concern (sync_index.py has no concept
+    # of scope), so it always runs, regardless of --staged/--since.
+    step("index sync", lambda: sync_index.main([*common, "--check"]))
 
     print("\n=== Summary ===")
     failed = False

@@ -4,10 +4,10 @@
 Usage:
     python scripts/new_problem.py 3485 "Some Title" \\
         --category "Data Structures and Libraries" --difficulty 3 \\
-        --topics "binary search tree,recursion" --lang cpp
+        --topics "Data Structures,Recursion" --lang cpp
 
     python scripts/new_problem.py 2602 "Total Spent" --category SQL \\
-        --difficulty 2 --topics aggregation --lang sql --slug total-spent
+        --difficulty 2 --topics Math --lang sql --slug total-spent
 
 Creates problems/<range>/<id>-<slug>/ with a README.md built from the right
 L1/L2 template (L3 also gets deep-dive.md), a solutions/<lang>/main.<ext>
@@ -28,7 +28,7 @@ import re
 import sys
 from pathlib import Path
 
-from repo_lib import CATEGORIES, DOC_LEVELS, LANGUAGES, PRIORITIES, SLUG_RE, find_language
+from repo_lib import CATEGORIES, DOC_LEVELS, LANGUAGES, PRIORITIES, SLUG_RE, TOPICS, find_language, find_topic
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 TEMPLATES = REPO_ROOT / "templates"
@@ -132,7 +132,15 @@ def main(argv: list[str] | None = None) -> int:
         print(f"error: {problem_dir.relative_to(root)} already exists", file=sys.stderr)
         return 1
 
-    topics = [t.strip() for t in args.topics.split(",") if t.strip()]
+    raw_topics = [t.strip() for t in args.topics.split(",") if t.strip()]
+    topics: list[str] = []
+    for raw in raw_topics:
+        resolved = find_topic(raw)
+        if resolved is None:
+            print(f"error: Topics entry '{raw}' must be one of: {', '.join(TOPICS)}", file=sys.stderr)
+            return 1
+        topics.append(resolved)
+
     link = args.link or f"https://judge.beecrowd.com/en/problems/view/{args.id}"
     values = {
         "id": str(args.id),

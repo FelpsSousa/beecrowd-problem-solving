@@ -12,7 +12,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from repo_lib import LANGUAGES  # noqa: E402
 
-README = """# {id} — Fixture
+README = """# {id}: Fixture
 
 ## Link
 https://example.invalid/{id}
@@ -23,7 +23,7 @@ https://example.invalid/{id}
 - Platform: Beecrowd
 - Category: {category}
 - Difficulty Level: 1
-- Topics: fixture
+- Topics: Input / Output
 - Primary Language: {language}
 - Other Implementations: None
 - Documentation Level: L1
