@@ -15,8 +15,8 @@ This file is the single prioritized TODO for the repository. Sections are ordere
 
 - [x] implement `scripts/new_problem.py`: scaffolds a problem folder (README from the right L1/L2 template, L3 also gets `deep-dive.md`, `solutions/<lang>/main.<ext>` from the language skeleton) from the problem ID, title, and category
 - [x] implement `scripts/validate_structure.py`: fails if a `solutions/*/main.*` file is empty, a metadata field is missing, checkbox syntax is malformed, or a problem folder doesn't match `<id>-<slug>` naming
-- [ ] implement `scripts/sync_index.py`: regenerates `trackers/solved-problems.md` and `docs/indexes/*.md` from each problem's metadata block, so indexes can never drift from reality again
-- [ ] implement `scripts/generate_views.py`: optional dashboard/summary view (counts by language, category, difficulty)
+- [x] implement `scripts/sync_index.py`: regenerates `trackers/solved-problems.md` and `docs/indexes/*.md` from each problem's metadata block, so indexes can never drift from reality again
+- [x] implement `scripts/generate_views.py`: read-only dashboard (counts by category, difficulty, language, doc level, review priority, topic), plain text or `--markdown`, reuses `sync_index.py`'s Solved entries so the two can't disagree
 
 ## 2b. Test tooling and Git gates
 
