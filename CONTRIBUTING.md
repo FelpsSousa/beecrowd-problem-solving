@@ -26,6 +26,7 @@ Please read:
 - `docs/documentation-standard.md`
 - `docs/coding-standards.md`
 - `docs/testing.md`
+- `docs/ai-assistance.md`
 
 ## Main principle
 
