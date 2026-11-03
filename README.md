@@ -2,7 +2,7 @@
 
 A professional problem-solving repository focused on algorithmic thinking, clean code, and documented learning.
 
-This repository is part of my long-term technical growth and public portfolio. It is not just a collection of accepted submissions &ndash; it is a structured knowledge base built to improve problem-solving, code quality, technical communication, and interview readiness.
+This repository is part of my long-term technical growth and public portfolio. It is not just a collection of accepted submissions. It is a structured knowledge base built to improve problem-solving, code quality, technical communication, and interview readiness.
 
 ## Goals
 
@@ -35,11 +35,11 @@ Each problem has **one primary language**, chosen for what the problem trains (s
 
 This repository uses a layered documentation model:
 
-- **L1 &mdash; Quick Log**: short documentation for straightforward problems
-- **L2 &mdash; Standard**: structured explanation for relevant problems
-- **L3 &mdash; Deep Dive**: deeper analysis for hard, elegant, or high-value problems
+- **L1, Quick Log**: short documentation for straightforward problems
+- **L2, Standard**: structured explanation for relevant problems
+- **L3, Deep Dive**: deeper analysis for hard, elegant, or high-value problems
 
-Not every problem needs the same depth. The goal is not bureaucratic documentation &ndash; the goal is sustainable excellence.
+Not every problem needs the same depth. The goal is not bureaucratic documentation; the goal is sustainable excellence.
 
 ## Core Principles
 
@@ -55,7 +55,7 @@ This repository is public for portfolio, study, and professional visibility purp
 
 Unless explicitly stated otherwise, all code, notes, explanations, and repository structure in this project are authored and maintained by me and are not licensed for reuse, redistribution, modification, or commercial use.
 
-The absence of a license file is intentional. Public visibility does not mean this repository open source.
+The absence of a license file is intentional. Public visibility does not make this repository open source.
 
 Problem statements, titles, and platform references belong to their respective owners. This repository contains my own implementations, notes, and interpretations for educational and portfolio purposes.
 
@@ -69,6 +69,10 @@ python scripts/check_all.py
 
 See `docs/testing.md` for what it checks and how to enable the Git hooks.
 
-# Status
+## Tooling and AI Assistance
+
+Branches, commits, and pull requests follow [`docs/git-workflow.md`](docs/git-workflow.md) and are run from my account with `scripts/flow.py`. This repository is built with the help of an AI assistant; what it does, what I do, and the rules that keep authorship honest are in [`docs/ai-assistance.md`](docs/ai-assistance.md).
+
+## Status
 
 This repository is being built incrementally, with careful structure, documentation, and selective migration from older problem-solving repositories.
