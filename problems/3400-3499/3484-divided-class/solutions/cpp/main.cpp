@@ -28,7 +28,7 @@ int insertStudent(std::unique_ptr<Node>& root, int height) {
 }
 
 int main() {
-    int n;
+    int n = 0;
     std::cin >> n;
 
     std::unique_ptr<Node> root;
@@ -36,10 +36,10 @@ int main() {
     int levelCount = 0;
 
     for (int i = 0; i < n; ++i) {
-        int height;
+        int height = 0;
         std::cin >> height;
 
-        int level = insertStudent(root, height);
+        const int level = insertStudent(root, height);
 
         // level <= i, because every insertion adds exactly one node, so the
         // index is always inside the vector of size n.

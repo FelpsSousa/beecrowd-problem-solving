@@ -1,7 +1,7 @@
 # 3484: Divided Class
 
 ## Link
-https://judge.beecrowd.com/pt/problems/view/3484
+https://judge.beecrowd.com/en/problems/view/3484
 
 ## Metadata
 
@@ -59,12 +59,21 @@ Because every node belongs to exactly one depth, and because we update the minim
 
 Given that `N < 250`, this is more than enough.
 
+## Implementation Notes
+
+- **Ownership:** every node is owned by a `std::unique_ptr` and created with `std::make_unique`, so there is no `new` or `delete` and nothing can leak (C++ Core Guidelines R.11, R.20, R.23). When `root` goes out of scope, the whole tree is released automatically.
+- **Insertion through the slot:** `insertStudent` walks a pointer to the owning `std::unique_ptr` itself (`std::unique_ptr<Node>* slot`), not to the node. When the loop stops, `slot` is the empty position, so the new node is written straight into it, with no parent pointer and no "was it left or right" check afterwards.
+- **Destruction depth:** freeing the tree is recursive, one call per level. A skewed tree has depth `N - 1`, at most 248 here, which is safe. With hundreds of thousands of nodes, the tree would need an iterative teardown instead.
+- **Answer during construction:** `minAtLevel` has `N` entries because a tree with `N` nodes is at most `N` levels deep, so `level` is always a valid index.
+
 ## Edge Cases
 
 - only one student
 - strictly increasing heights
 - strictly decreasing heights
 - mixed heights creating an unbalanced tree
+- equal heights: the comparison is `height < current`, so an equal height goes to the right subtree
+- the largest input (`N = 249`), which keeps the destruction depth and the `O(N^2)` worst case within limits
 
 ## What I Learned
 
